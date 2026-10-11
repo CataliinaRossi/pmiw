@@ -1,3 +1,9 @@
+// CATALINA ROSSI Y JULIETA RAMOS
+// PMIW. Comision 4. Docente: Leo Garay
+//
+// Obra: Super Mario
+// link al video de youtube: https://youtu.be/nA05js_GrkU
+
 // estados de pantallas
 
 const Pinicio = -1;
