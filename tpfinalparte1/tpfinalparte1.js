@@ -1,23 +1,25 @@
-// CATALINA ROSSI Y JULIETA RAMOS
+// CATALINA ROSSI
 // PMIW. Comision 4. Docente: Leo Garay
 //
 // Obra: Super Mario
-// link al video de youtube: https://youtu.be/nA05js_GrkU
+// 
 
-// estados de pantallas
 
-const Pinicio = -1;
-const Pcreditos = -2;
-
-// declaracion de variables 
+let Pinicio = -1;
+let Pcreditos = -2;
 
 let pantalla = Pinicio;
-let scroll;
 
-let rojo, amarillo; 
+// imagenes
 
 let imgInicio;
 let imgs = [];
+
+// colores y scroll de creditos
+
+let rojo;
+let amarillo;
+let scroll;
 
 // variables para pantalla 0
 
@@ -72,14 +74,42 @@ let sonidosTexto = [];
 
 // botones
 
-let botonA = { x: 240, y: 105, ancho: 320, alto: 40 };
-let botonB = { x: 240, y: 160, ancho: 320, alto: 40 };
-let botonContinuar = { x: 610, y: 258, ancho: 170, alto: 34 };
-let botonCentral = { x: 250, y: 370, ancho: 300, alto: 55 };
-let botonInicio = { x: 300, y: 220, ancho: 200, alto: 50 };
-let botonCreditos = { x: 300, y: 290, ancho: 200, alto: 50 };
+let botonAx = 240;
+let botonAy = 105;
+let botonAw = 320;
+let botonAh = 40;
 
-let cajaTexto = { x: 20, y: 300, ancho: 760, alto: 130 };
+let botonBx = 240;
+let botonBy = 160;
+let botonBw = 320;
+let botonBh = 40;
+
+let contX = 610;
+let contY = 258;
+let contW = 170;
+let contH = 34;
+
+let centralX = 250;
+let centralY = 370;
+let centralW = 300;
+let centralH = 55;
+
+let inicioX = 300;
+let inicioY = 220;
+let inicioW = 200;
+let inicioH = 50;
+
+let credX = 300;
+let credY = 290;
+let credW = 200;
+let credH = 50;
+
+// caja de texto
+
+let cajaX = 20;
+let cajaY = 300;
+let cajaW = 760;
+let cajaH = 130;
 
 // imagenes
 
@@ -195,30 +225,30 @@ function mousePressed() {
   userStartAudio(); 
 
   if (pantalla == Pinicio) {
-    if (clicSobre(botonInicio)) {
+    if (clicSobre(inicioX, inicioY, inicioW, inicioH)) {
       cambiarPantalla(0);
-    } else if (clicSobre(botonCreditos)) {
+    } else if (clicSobre(credX, credY, credW, credH)) {
       cambiarPantalla(Pcreditos);
     }
   } else if (pantalla == Pcreditos) {
-    if (clicSobre(botonCentral)) cambiarPantalla(Pinicio);
+    if (clicSobre(centralX, centralY, centralW, centralH)) cambiarPantalla(Pinicio);
 
 
   } else {
     if (siguienteA[pantalla] != -1 && siguienteB[pantalla] != -1) {
-      if (clicSobre(botonA)) {
+      if (clicSobre(botonAx, botonAy, botonAw, botonAh)) {
         if (pantalla == 6) {
           hello.play();
           cambiarPantalla(siguienteA[pantalla], false);
         } else {
           cambiarPantalla(siguienteA[pantalla]);
         }
-      } else if (clicSobre(botonB)) {
+      } else if (clicSobre(botonBx, botonBy, botonBw, botonBh)) {
         cambiarPantalla(siguienteB[pantalla]);
       }
     } else if (siguienteA[pantalla] != -1) {
-      if (clicSobre(botonContinuar)) cambiarPantalla(siguienteA[pantalla]);
-    } else if (clicSobre(botonContinuar)) {
+      if (clicSobre(contX, contY, contW, contH)) cambiarPantalla(siguienteA[pantalla]);
+    } else if (clicSobre(contX, contY, contW, contH)) {
       cambiarPantalla(Pinicio);
     }
   }
