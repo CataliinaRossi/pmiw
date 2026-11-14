@@ -1,9 +1,7 @@
-// inicio
-
 function dibInicio() {
   image(imgInicio, 0, 0, width, height);
-  dibBoton(botonInicio, "COMENZAR");
-  dibBoton(botonCreditos, "CRÉDITOS");
+  dibBoton(inicioX, inicioY, inicioW, inicioH, "COMENZAR");
+  dibBoton(credX, credY, credW, credH, "CRÉDITOS");
 }
 
 // creditos
@@ -25,7 +23,7 @@ function dibujarCreditos() {
 
   if (scroll < -(textosCreditos.length - 1) * 40) scroll = height;
 
-  dibBoton(botonCentral, "VOLVER");
+  dibBoton(centralX, centralY, centralW, centralH, "VOLVER");
 }
 
 function dibFondoCreditos() {
@@ -82,12 +80,12 @@ function dibHistoria() {
 
   dibCajaTexto(textos[pantalla]);
   if (siguienteA[pantalla] != -1 && siguienteB[pantalla] != -1) {
-    dibBoton(botonA, textosA[pantalla]);
-    dibBoton(botonB, textosB[pantalla]);
+    dibBoton(botonAx, botonAy, botonAw, botonAh, textosA[pantalla]);
+    dibBoton(botonBx, botonBy, botonBw, botonBh, textosB[pantalla]);
   } else if (siguienteA[pantalla] != -1) {
-    dibBoton(botonContinuar, textosA[pantalla]);
+    dibBoton(contX, contY, contW, contH, textosA[pantalla]);
   } else {
-    dibBoton(botonContinuar, "VOLVER A JUGAR");
+    dibBoton(contX, contY, contW, contH, "VOLVER A JUGAR");
   }
 }
 
@@ -111,44 +109,46 @@ function dibCajaTexto(texto) {
   fill(0, 0, 0, 200);
   stroke(255);
   strokeWeight(3);
-  rect(cajaTexto.x, cajaTexto.y, cajaTexto.ancho, cajaTexto.alto, 12);
+  rect(cajaX, cajaY, cajaW, cajaH, 12);
 
   noStroke();
   fill(255);
   textSize(18);
   textAlign(LEFT, TOP);
-  text(texto, cajaTexto.x + 20, cajaTexto.y + 15, cajaTexto.ancho - 40, cajaTexto.alto - 30);
+  text(texto, cajaX + 20, cajaY + 15, cajaW - 40, cajaH - 30);
   pop();
 }
 
 // botones
 
-function dibBoton(boton, textoBoton) {
+function dibBoton(x, y, ancho, alto, textoBoton) {
   push();
-  let encima = clicSobre(boton);
+  let encima = clicSobre(x, y, ancho, alto);
 
   noStroke();
   fill(120, 10, 10);
-  rect(boton.x, boton.y + 4, boton.ancho, boton.alto, 8);
+  rect(x, y + 4, ancho, alto, 8);
 
   stroke(255);
   strokeWeight(3);
   if (encima) fill(amarillo);
   else fill(rojo);
-  rect(boton.x, boton.y, boton.ancho, boton.alto, 8);
+  rect(x, y, ancho, alto, 8);
 
   noStroke();
   if (encima) fill(60, 30, 0);
   else fill(255);
   textSize(14);
   textAlign(CENTER, CENTER);
-  text(textoBoton, boton.x + boton.ancho / 2, boton.y + boton.alto / 2);
+  text(textoBoton, x + ancho / 2, y + alto / 2);
   pop();
 }
 
-function clicSobre(b) {
-  return mouseX >= b.x && mouseX <= b.x + b.ancho &&
-    mouseY >= b.y && mouseY <= b.y + b.alto;
+function clicSobre(x, y, ancho, alto) {
+  if (mouseX >= x && mouseX <= x + ancho && mouseY >= y && mouseY <= y + alto) {
+    return true;
+  }
+  return false;
 }
 
 function cambiarPantalla(nueva, conSonido) {
@@ -227,3 +227,4 @@ function ponerMusica(musica) {
 
   musica.loop();
 }
+
