@@ -90,6 +90,6 @@ let pantallasSinMusica = [5, 12, 19, 21];
 let textosCreditos = [
   "PMIW - Comisión 4",
   "Docente: Leonardo Garay",
-  "Integrantes: Julieta Ramos, Catalina Rossi",
+  "Integrante: Catalina Rossi",
   "Historia original: Super Mario Bros (Nintendo, 1985)"
 ];
